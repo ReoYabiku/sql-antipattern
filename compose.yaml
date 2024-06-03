@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16.3
+    container_name: sql-antipattern
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - target: 5432
+        published: 5432
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: bind
+        source: ./database
+        target: /docker-entrypoint-initdb.d
